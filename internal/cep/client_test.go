@@ -41,3 +41,20 @@ func TestViaCEPClient_Find_NotFound(t *testing.T) {
 		t.Fatalf("expected ErrNotFound, got %v", err)
 	}
 }
+
+// A ViaCEP retorna "erro" como string ("true") para alguns CEPs em vez de
+// boolean — reproduzido em produção com o CEP 99999999.
+func TestViaCEPClient_Find_NotFound_ErroAsString(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"erro":"true"}`))
+	}))
+	defer server.Close()
+
+	client := &cep.ViaCEPClient{HTTPClient: server.Client(), BaseURL: server.URL}
+
+	_, err := client.Find(context.Background(), "99999999")
+	if err != cep.ErrNotFound {
+		t.Fatalf("expected ErrNotFound, got %v", err)
+	}
+}

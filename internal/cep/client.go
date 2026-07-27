@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 // ErrNotFound indica que o CEP tem formato válido mas não existe na base do
@@ -40,8 +41,18 @@ func NewViaCEPClient(httpClient *http.Client) *ViaCEPClient {
 }
 
 type viaCEPResponse struct {
-	Localidade string `json:"localidade"`
-	Erro       bool   `json:"erro"`
+	Localidade string       `json:"localidade"`
+	Erro       flexibleBool `json:"erro"`
+}
+
+// flexibleBool existe porque a ViaCEP às vezes retorna "erro" como boolean
+// (true) e às vezes como string ("true"), dependendo do CEP consultado.
+type flexibleBool bool
+
+func (b *flexibleBool) UnmarshalJSON(data []byte) error {
+	s := strings.Trim(string(data), `"`)
+	*b = flexibleBool(s == "true")
+	return nil
 }
 
 func (c *ViaCEPClient) Find(ctx context.Context, cepCode string) (Location, error) {
@@ -67,7 +78,7 @@ func (c *ViaCEPClient) Find(ctx context.Context, cepCode string) (Location, erro
 		return Location{}, err
 	}
 
-	if body.Erro || body.Localidade == "" {
+	if bool(body.Erro) || body.Localidade == "" {
 		return Location{}, ErrNotFound
 	}
 
