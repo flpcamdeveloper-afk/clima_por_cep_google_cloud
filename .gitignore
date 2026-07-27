@@ -1,0 +1,5 @@
+/climacep
+*.exe
+.env
+.idea/
+.vscode/
