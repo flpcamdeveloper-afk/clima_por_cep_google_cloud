@@ -5,13 +5,14 @@ retorna a temperatura atual em Celsius, Fahrenheit e Kelvin.
 
 ## 🔗 URL em produção (Google Cloud Run)
 
-> **TODO**: preencher com a URL pública após o deploy, ex:
-> `https://climacep-xxxxxxxxxx-uc.a.run.app`
+```
+https://climacep-903785298812.us-central1.run.app
+```
 
 Exemplo de uso, já publicado:
 
 ```bash
-curl "https://<URL-DO-CLOUD-RUN>/?cep=01001000"
+curl "https://climacep-903785298812.us-central1.run.app/?cep=01001000"
 ```
 
 ## Contrato da API
