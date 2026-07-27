@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"climacep/internal/cep"
+	"github.com/flpcamdeveloper-afk/clima_por_cep_google_cloud/internal/cep"
 )
 
 func TestViaCEPClient_Find_Success(t *testing.T) {

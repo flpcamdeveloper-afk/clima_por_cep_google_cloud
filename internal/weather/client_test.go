@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"climacep/internal/weather"
+	"github.com/flpcamdeveloper-afk/clima_por_cep_google_cloud/internal/weather"
 )
 
 func TestWeatherAPIClient_CurrentTempC_Success(t *testing.T) {

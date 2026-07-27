@@ -9,9 +9,9 @@ import (
 	"net/http"
 	"regexp"
 
-	"climacep/internal/cep"
-	"climacep/internal/temperature"
-	"climacep/internal/weather"
+	"github.com/flpcamdeveloper-afk/clima_por_cep_google_cloud/internal/cep"
+	"github.com/flpcamdeveloper-afk/clima_por_cep_google_cloud/internal/temperature"
+	"github.com/flpcamdeveloper-afk/clima_por_cep_google_cloud/internal/weather"
 )
 
 const (

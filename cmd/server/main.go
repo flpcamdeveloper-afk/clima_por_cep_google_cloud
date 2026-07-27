@@ -6,9 +6,9 @@ import (
 	"os"
 	"time"
 
-	"climacep/internal/cep"
-	"climacep/internal/handler"
-	"climacep/internal/weather"
+	"github.com/flpcamdeveloper-afk/clima_por_cep_google_cloud/internal/cep"
+	"github.com/flpcamdeveloper-afk/clima_por_cep_google_cloud/internal/handler"
+	"github.com/flpcamdeveloper-afk/clima_por_cep_google_cloud/internal/weather"
 )
 
 func main() {

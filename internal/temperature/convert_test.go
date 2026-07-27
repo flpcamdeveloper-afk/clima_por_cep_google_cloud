@@ -3,7 +3,7 @@ package temperature_test
 import (
 	"testing"
 
-	"climacep/internal/temperature"
+	"github.com/flpcamdeveloper-afk/clima_por_cep_google_cloud/internal/temperature"
 )
 
 func TestCToF(t *testing.T) {
